@@ -1,0 +1,483 @@
+NIO
+--------
+	java.nio.MappedByteBuffer
+	映射字节缓冲区。
+
+protobuf
+-------------
+	1.protocal buffer,协议缓冲区.
+	2.串行化技术。
+		java.io.Serializable
+		ObjectOutputStream / ObjectInputStream
+		transient		//临时的
+		transaction		//事务
+		truncate		//截断.
+
+串行化
+---------------
+	[java串行化]
+	易于使用
+	效率不高。
+	没有语言的互操作性。
+
+	[手动二进制编码]
+	效率高
+	难
+	跨语言
+
+	[人性化文档结构]
+	xml/json/txt/sax
+	低效
+
+	[PB]
+	描述语言
+	编译器
+	库
+	2008年发布.
+
+PB下载和使用
+----------------
+	0.安装protobuf-win32.zip
+		a.解压即可。
+		b.配置环境path变量
+			path=%path%:c:\myprograms\protocal-2.5.0
+			
+	1.设计对象
+	2.描述对象
+		[d:/xxx/addressbook.proto]
+		package tutorial;
+		option java_package = "com.example.tutorial";
+		option java_outer_classname = "AddressBookProtos";
+		message Person {
+			required string name = 1;
+			required int32 id = 2;
+			optional string email = 3;
+			enum PhoneType {
+			MOBILE = 0;
+			HOME = 1;
+			WORK = 2;
+		}
+		message PhoneNumber {
+			required string number = 1;
+			optional PhoneType type = 2 [default = HOME];
+		}
+		repeated PhoneNumber phone = 4;
+		}
+		message AddressBook {
+			repeated Person person = 1;
+		}
+	3.编译描述
+
+		cmd>protoc --java_out=d:\protobuf\out addressbook.proto
+		
+		-- 会生成源代码.
+
+	4.获得生成的源代码
+		略
+	5.导入对象到工程
+		a.引入google protobuf类库
+		b.复制源代码到eclise中.
+	
+	6.实例化对象
+		package com.example.tutorial;
+
+		import java.io.FileNotFoundException;
+		import java.io.FileOutputStream;
+
+		import com.example.tutorial.AddressBookProtos.Person;
+		import com.example.tutorial.AddressBookProtos.Person.PhoneNumber;
+		import com.example.tutorial.AddressBookProtos.Person.PhoneType;
+
+		public class TestPB {
+
+			public static void main(String[] args) throws Exception {
+				//使用对象
+				PhoneNumber number = Person.PhoneNumber.newBuilder()
+								.setType(PhoneType.MOBILE)
+								.setNumber("123456")
+								.build();
+
+				Person p = Person.newBuilder().setId(100)
+					.setName("tom")
+					.setEmail("abc@hotmail.com")
+					.addPhone(number)
+					.build();
+				
+				//使用PB串行化对象
+				FileOutputStream fos = new FileOutputStream("d:/protobuf/person.dat");
+				p.writeTo(fos);
+				fos.close();
+				System.out.println("over");
+				
+			}
+		}
+
+
+
+串行化技术对比
+-----------------
+	[Space Size]
+	java-build-in( 870) > google-protobuf(230) > avro(210)		//3倍多
+	
+	[Time]
+	java-build-in(75.3) > avro(12.3) > google-protobuf(6.6)		//10倍多
+
+
+java总结
+-----------------
+	1.基础语法
+		byte	//1 -128 ~ 127
+		short	//2
+		int		//4
+		long	//8
+		float	//4
+		double	//8
+		boolean	//1
+		char	//2 unicode gbk utf8 ansi ascii
+				//'' 'abc' '\n' \r \t
+				char c = 'a' ;
+				     c = 97 ;
+					 c = '\u0061'
+					 c = '' ;
+		String //常量."" null
+		StringBuffer(安全) | StringBuilder(不安全)
+		synchronized
+
+	2.OOP
+		封装
+		继承
+		多态:成员变量,
+		extends 
+		implements
+		单层继承
+		面向接口编程:降低耦合。
+		抽象类:
+
+		类的成员:成员变量,成员函数,构造函数，构造代码块，静态代码块，内部类，
+		创建对象过程:1.开辟内存
+					 2.初始化默认值.
+					 3.构造代码块或成员变量的赋值。
+					 4.构造函数。
+
+		final:	
+			类		//不能继承
+			方法	//不能重写
+			字段	//只能被赋值一次。
+
+			abstract + final		//非法
+			abstract + private		//非法
+			abstrat + static		//非法
+			final + private			//不非法
+			
+	3.IO
+		CharSet						//
+		InputStream/OuputStream
+		Reader/Writer
+		BuffedInputStream/BufferedOutputStream(8k)
+		BufferedReader/BufferedWriter
+		InputStreamReader/OuputStreamWriter
+		new BufferedReader(new ...(System.in));
+		ObjectInputStream/ObjectOutputStream
+		ByteArrayOutputStream
+		将对象转换成byte[]
+		java.io.Serializable	//标识性接口
+								//long serializableUID,反串行。
+
+		while((len = is.read()) != -1){
+		
+		}
+
+	4.NIO
+		New IO:非阻塞.
+		Selector				//
+		ServerSocketChannel		//
+		SocketChannel			//
+		SelectionKey.OP_ACCEPT
+		SelectionKey.OP_CONNECT
+		SelectionKey.OP_READ
+		SelectionKey.OP_WRITE
+
+		while(true){
+			sel.select();		//
+		}
+
+		ByteBuffer				//字节缓冲区
+		ByteBuffer				//ByteBuffer.allocate()
+								//ByteBuffer.allocateDirect();
+								//Cleaner.clean()
+								//概念：0 <= mark <= position <= limit <= capacity
+								//buf.flip();		//
+								//buf.clear();		//
+								//buf.reset();		//pos -> mark
+	5.Socket
+		TCP	//
+		UDP
+
+		七层协议
+		--------------
+			物理层
+			数据链路层
+			网络层
+			传输层	//transfer control protocal,user datagram protoca.
+			会话层	//
+			表示层
+			应用层	//http(hyper text transfer ptotocal),ftp:file transfer pro, https smtp
+		
+		ServerSocket					//统配ip0.0.0.0 + port
+		Socket s = ss.accept()			//阻塞
+
+		s.getInputStream()				//SocketInputStream
+		s.getOutputStream()				//SocketOutputStream
+
+		//全双工.
+
+		DatagramSocket			//数据报套接字
+		DatagramPacket			//数据报包,包里有地址。64K
+
+
+	6.JDBC
+		标准，接口。
+		driver.jar		//jdbc实现。
+		insert
+		update
+		delete
+		select
+		CRUD		//create retrieve update delete DML(data mani.. language.数据操纵语言)
+		DDL:		//data define language,收据定义语言.
+
+		Statement			// -- 
+		PreparedStaement	//
+		CallableStatement	//存储过程 + 函数
+		
+		truncate			//截断表，无法回滚。
+		事务:transaction
+			A:atomic		//原子性
+			C:consistent	//一致性
+			I:isolate		//隔离性
+			D:durable		//持久性
+			
+			commit()
+			rollback();
+			savepoint()
+
+			autoCommit(false);
+
+			并发执行现象
+			-------------
+				脏读		:dirty read
+				不可重复读	:unrepeatable read	
+				幻读		:phantom read,
+			隔离级别
+			--------------
+				1.read uncommitted,读未提交.导致了(脏读 + 不可重复 + 幻读)
+				2.read committed ,读已提交,避免了脏读,导致(不可重复 + 幻读)
+				4.repeatable read,可以重复读，避免了(脏读 + 不可重复读 + 幻读 mysql)
+				8.serializable(悲观锁).
+
+				不能并发。
+				锁旗标:0 / 1.
+
+				乐观锁:version + timestamp
+
+				A写，B阻塞写。
+				A写，B可读。
+
+				A读:B不一定能写(for update | 隔离级别)。
+				A读:B可读。
+
+				lock table xx ;
+				
+				unlock table ;
+
+				MVCC : multiple version concurrency control,多版本并发控制。
+				
+				HA	:high availability,高可用性。 
+				SPOF:single point of failure,单点故障。 
+
+	7.反射
+		Class
+		Method
+		Feild
+		Constructor
+
+		setAccessible(true);
+		
+		clazz.getDecleardMethods()		//
+		clazz.getMethods();				//所有可用的方法。
+		method.invoke();
+		field.get() / field.set(obj,xx)	//
+		
+		Introspector		//内省
+		BeanInfo
+		PropertyDescriptor
+		MethodDescriptor
+		read
+		write
+		
+		//不改变源码，增加新功能。
+		Proxy p = Proxy.newProxInstance(classloader,Class[], handler);
+
+	8.集合
+		java.lang.Object
+					//equals
+
+		List		//----|>Collection -----|>Iterable
+					//有序，可重复(equals)
+					//ArrayList,封装数组,读快。
+					//LinkedList，写块。
+
+		Set			//----|>Collection -----|>Iterable
+					//无序列，不重复
+
+		Map			//none
+					//key-value
+					//HashMap:内部通过ArrayList + linkedList组合实现。
+					//hashcodo1  == hashcode2 , (o1 == o2 || o1.equals(o2))
+
+		hash:		//散列
+
+
+	9.多线程
+		状态
+		------------------
+			NEW
+			Runnable	//
+			blocked		//阻塞
+			wait
+			wait_timing
+			terminate
+			sleep		//
+
+		较真.
+		java.lang.Thread
+		java.lang.Runnable
+		new Thread().start();
+		yield()		//放弃
+		join()		//
+
+		daemon()	//守护线程
+		sleep()		//休眠,
+		同步代码块同步方法
+					//
+		wait()		//锁旗标的等待队列。
+		notify()	//
+		notifyAll()	//
+		wait(n)		//
+
+	10.JVM
+		java virtual machine,
+		runtime data area,运行时数据区
+		-------------------------
+			heap							//共享,对象 + []
+			method area						//共享
+			java stack						//
+			native method stack				//
+			program counter register		//
+
+			heap							//young(eden + s1 + s0) + old
+			non-heap						//permnent / metaspace
+			off-heap						//jvm之外的内存()
+
+			-Xmx
+			-Xms
+			-Xmn		//New
+			-Xss		//stack 1m
+			-XX:NewSize=
+			-XX:MaxNewSize=
+			-XX:NewRatio=		//
+			-XX:SurvivorRatio=	//s : eden
+			-XX:CompressedClassSpaceSize=
+			jvisualvm
+			jconsole
+
+	11.异常
+		throw		//抛异常
+		
+		throws		//方法声明抛出异常
+		extends
+		implements
+
+		Throwable
+		java.lang.Throwable
+			/|\
+			 |---------Exception  ---<|---- RuntimeException
+			 |---------Error
+
+		try{
+		}
+		catch(Exception e){
+		}
+		finally{
+			..
+		}
+
+		final		//
+		finally		//
+		finalize()	//gc
+		
+
+		overload		//重载
+		
+		override		//覆盖
+		overwrite		//重写
+
+
+在vmware中安装centos客户机
+---------------------------
+	1.vware文件菜单-->新建虚拟机->典型安装
+	2.安装程序光盘镜像文件，指定CentOS-7-DVD-1503-01-x86_64.iso
+	3.个性化linux
+		全名	:centos
+		用户名	:centos
+		密码	:123456
+		确认密码:123456
+
+
+centos基本命令
+---------------------------
+	CentOS						Windows
+	$>ls						cmd>dir				//
+	$>ls --help										//查看命令帮助
+	$>man ls										//查看命令帮助
+	
+	$>clear						cmd>cls				//清屏
+	$>cd /home					cmd>cd d:/			//切换目录
+	$>cd .						cmd>cd .			//进入当前目录
+	$>cd ..						cmd>cd ..			//进入上级目录
+	$>cd /home/centos			cmd>cd d:/xx/x/x	//进入绝对路径
+
+	$>pwd											//显式当前目录
+	$>whoami										//显式当前用户名
+
+	$>su root										//切换用户,输入密码
+	$>passwd										//修改当前用户的密码
+
+	$>ifconfig					cmd>ipconfig			//查看ip地址
+	$>ping localhost			cmd>ping localhost		//查看网络连通情况
+	$>ping www.baidu.com		cmd>ping www.baidu.com	//查看网络连通情况
+
+	$>启动桌面版的网卡
+		on.
+	$>su centos											//
+	$>cd /home/centos									//
+	$>cd ~												//回到主目录
+	$>cd -												//回到上次的目录
+	$>ll												//别名,ls -l --autocolor...
+	$>alias												//查看所有的别名
+	$>ls -a -l -h										//查看当前目录-h:人性化 -l:列表 -a:显式.开头
+	$>mkdir ~/Downloads/a								//创建目录
+	$>touch ~/Downloads/a/1.txt							//创建文件
+	$>echo helloworld > 1.txt							//重定向输出
+	$>cat 1.txt											//查看文件
+	$>cp 1.txt 2.txt									//复制文件
+	$>rm 1.txt											//删除文件
+	$>rm -rf tmp										//强行递归删除
+	$>mv a.txt tmp/										//强行递归删除
+
+
+
+
+
+
+
+	

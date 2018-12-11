@@ -1,0 +1,118 @@
+OSI
+---------
+	Open System interconnect,
+	物理层
+	数据链路层
+	网络层	//internet protocal
+	传输层	//TCP(transfer control protocal,) UDP)(user datagram protocal)
+	会话层	
+	表示层	
+	应用层	//http smtp https ftp
+
+
+netstat -ano
+	192.168.231.1:8888
+	192.168.232.1:8888
+	
+Socket
+----------
+	[ServerSocket]
+	new ServerSocket(port);
+	Socket s = ss.accept();			//接受请求,阻塞.
+	s.getLocalAddress();			//本地地址
+	s.getRemoteAddress();			//远程地址
+
+	Socket s = new Socket("192.168.231.1",8888);
+	s.getOuputStream();
+	s.getInputStream();
+
+
+				 
+URL:字符串.
+--------------------
+	统一资源定位符。
+	schema://domainname:port/path?queryString#fragement
+	http://www.baidu.com/index.html
+	http://www.baidu.com/a/b/c/d/e.html
+	http://www.baidu.com/a/b/c/d/e.jsp?id=123&name=tom
+
+	D:/downloads/a.txt
+	file:///d:/downloads/a.txt							//本地文件系统协议。
+	hdfs://192.1698.231.100:8020/user/ubuntu/xx.txt		//
+	ftp://www.baidu.com/xlxlxxl/a.txt
+
+	file:///d:/downloads
+
+设计模式
+----------------
+	单例
+	装饰
+	工厂
+	适配器
+	builder
+
+	MVC:Model View Controller,
+	    模型视图控制器.
+		GUI.
+
+暂停
+-------------------
+	1.增加按钮
+	2.
+	3.
+	4.
+
+List:
+Set:
+Map:Key-value 
+Properties:类似于Map,继承了HashTable(线程安全的)
+			key-value都是String.
+
+
+断点续传
+-------------------
+	1.
+	2.
+	3.
+	4.
+
+
+改造项目
+-----------------
+	1.封装DownloadInfo类。
+		...
+	2.在Downloader创建List<DownloadInfo> donwloadInfos ;
+	  
+	3.
+	4.
+
+IBM Rose
+---------------
+	1.卸载
+		控制面板 -> 程序和功能 -> IBM Rose -> 卸载
+	2.安装
+		a.打开虚拟光驱软件(Daemon Tool Lite)
+		b.安装
+		c.注册license
+			import license
+			browse:选择license.upd文件
+			一路导入。
+			...
+
+	3.如果出现xxx.dll丢失问题
+		a.复制${rose_安装目录}\common\(license.dll + suite objects.dll)到
+		  系统(c:\windows\System32 和 c:\windows\SysWOW64)目录下.
+
+图元.
+
+UML
+--------------
+	 Uniform Modeling  Language,统一建模语言。
+
+图
+-------------
+	用例图。(需求分析)
+	类图
+
+
+

@@ -1,0 +1,120 @@
+
+作业
+-----------------
+	1.创建Animal类
+		class Animal{
+			String name;
+			int age;
+			/get/set
+			cry()	//抽象方法
+		}
+	  创建Cat和Dog类，继承Animal类，实现cry方法.
+		class Cat ...{
+			catchMouse(){...}
+		}
+
+		class Dog ...{
+			watch(){...}
+		}
+	  创建Person类。
+		class Person{
+			String name ;
+			String addr ;
+			int age ;
+			//get/set
+		}
+	
+	  创建ArrayList集合，里面放置100只猫,200只狗，10个人。
+	
+	2.上题中的Person类，重写equals方法,判定标准,name,addr,age均相同才是相同。
+
+	3.阐述equals方法
+	
+	4.把int转换成字节数组，以及将字节转换成int。
+
+	5.得到int的二进制和十六进制的存储形式.
+
+
+Iterable <|-- Collection  <| -- List
+                   |----- <| -- Set
+
+ArrayList
+--------------
+	写慢，读快(指定下标)。
+	数组列表
+	Object[]
+	Capacity		//容量
+	size			//元素的个数
+	index + offset
+	List判断对象是否存在，只跟equals有关。
+LinkedList
+---------------
+	写快，读慢。
+	可重复。
+
+Vector
+---------------
+	类似于ArrayList，通过Object[]实现。
+	线程安全的。
+
+Set
+----------------
+	元素是唯一的,不重复
+	无序的。
+	HashSet和hashMap没有本质区别。
+	hashSet通过hashmap实现的。
+	Key<Key,dummy>
+
+
+Map
+----------------
+	映射.
+	Key ---> value		//Entry,条目
+	put(k,v);			//1.判断hashcode相同，在判断是否同一对象，如果是同一对象，再判断equals方法
+	
+	putValue
+		(e.hash == hash &&
+                        ((k = e.key) == key || (key != null && key.equals(k))))
+	
+hash的来由
+--------------
+	h = key.hashCode()) ^ (h >>> 16
+	更多的特征值决定了hash之后的值。
+
+
+TreeSet
+---------------
+	
+
+
+
+
+作业
+--------------
+	1.实现链表,成环。
+
+				 255                  
+	2.Person{int height,int weight,int blood,int age}
+		int
+		------------------------------------
+
+		------------------------------------
+		byte -128 ~ 127
+
+	3.byte : -128 ~ 127  //0- 255
+			 byte + 128 = 
+
+	4.阐述hash的过程
+		哈希：散列。
+		兼具
+		1.newhash
+		  h = e.hashcode;
+		  h ^ (h >>> 16 )
+		2.定位桶
+		  newhash & (n-1)
+		3.判断桶元素 
+			3.1 为== null
+			3.2不空(hash == p.hash && ())
+			3.3继续此过程
+
+	

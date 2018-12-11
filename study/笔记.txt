@@ -1,0 +1,255 @@
+java
+-------------------
+
+affinty
+windows
+------------
+	win7-64
+	cmd :			//命令行
+	cmd:help		//看命令行下的帮助
+	cmd:start /?	//查看命令的帮助
+	cmd:mspaint		//打开画图
+
+
+DOS
+---------------
+	cls				//清屏 clear screen
+	dir				//
+	dir /w			//宽屏显示
+	dir /p			//分页显示
+	dir /w/p		//
+
+	.				//当前目录
+	..				//上级目录
+	cd				//改变目录 change directory
+	tab				//制表符 自动补全
+	d:				//切换盘符
+	del				//删除
+	del /F			//删除 f:force,强制 p:提示
+	del /s			//删除子目录下文件
+	del /S/F/Q *	//删除子目录下文件,安静、强制、递归、统配
+	del *			//删除所有文件
+
+	mkdir			//创建目录 等价于md命令
+	rmdir /?		//删除目录的命令
+	rmdir /S/Q		//删除目录和文件 S:删除文件 Q:安静模式，不提示 等价于rd命令
+
+	echo xx				//输出一段文本
+	echo xx > a.txt		//重定向输出到文本中.(覆盖)
+	echo xx >> a.txt	//重定向输出到文本中.(追加)
+	type a.txt			//显示文本的内容
+	
+	tree				//显示目录的树形图
+	renanem a.txt b.txt	//重命名
+
+
+快捷键
+-------------------
+	ctrl + c			//复制
+	ctrl + v			//粘贴
+	ctrl + z			//撤销
+	ctrl + y			//重做
+	ctrl + s			//保存
+	ctrl + c			//复制
+
+	alt + shift + tab	//反向切换窗框
+	alt + tab			//切换窗框
+
+	alt + 鼠标左键		//editplus 的框选功能
+	home				//定位光标到行首
+	end					//定位光标到行尾
+	shift + home		//选中光标到行首的内容
+	shift + end			//选中光标到行尾巴内容
+	shift + del			//彻底删除
+
+	alt + ctrl + down	//向下复制一行
+	alt + down			//向下移动一行
+	alt + up			//向上移动一行
+
+	alt + f4			//
+
+
+	windows + r			//运行对话框
+	windows + d			//桌面
+	cmd:calc			//计算器
+	cmd:mspaint			//画图
+	cmd:notepad			//记事本
+	cmd:services.msc	//服务
+	cmd:wmic			//查看cpu等信息,cpu
+	cmd:chkdsk d: /F	//修复磁盘
+
+	地址栏:直接输入cmd,进入当前目录下。
+
+	
+
+windows概念
+--------------
+	title bar		//标题栏
+	menu bar		//菜单栏
+	tool bar		//工具栏
+	status bar		//状态栏
+	task bar		//任务栏
+
+	high light		//高亮
+
+	active			//激活的
+	deactive		//钝化的
+
+路径
+-----------
+	具体地址.
+	
+目录
+-----------
+	所在文件夹。
+
+
+
+-------------
+
+最佳性能
+-----------
+	计算机->属性->高级系统设置->高级选项卡->性能成组框->设置->视觉效果->最佳性能
+	->平滑字体边缘。
+
+
+Linux
+------------
+	CentOS
+	ubuntu			//
+	suse
+	redhat
+
+java:
+-----------
+	sun  1995 , 2005 .
+
+stackoverflow
+----------------
+	
+
+分布式:由分布在不同主机上的进程协同在一起，才能构成整个应用。
+
+JEE		//java enterprise edition,java企业版.
+		//开发分布式企业级应用的规范。
+
+JSE		//Java standard edition,标准版,
+		//
+JME		//Java micro edition,微型版.
+
+Microsoft
+-------------
+	.net
+	速度快。
+
+java
+-------------
+	jee
+	跨平台。(操作系统),一次编译，到处执行。
+	JVM
+sandbox		//沙箱,JVM.
+
+
+dll	//dynamic link library,动态链接库.
+so	//shared object,共享文件
+
+
+JVM : 
+--------
+	Java virtual machine,Java虚拟机(sandbox)
+
+JRE:
+-------------
+	java Runtime environment,java运行时环境。
+	JVM + 核心类库.
+
+JDK
+------------
+	java development kit,java开发包。
+	JRE + tool。
+
+卸载jdk
+--------------
+	控制面板-->jdk* -> 卸载
+
+安装jdk
+--------------
+	1.没有空格，没有中文。
+	2.右键jdk-xxx.exe->以管理员身份运行
+	3.选择安装目录(没有空格，没有中文).
+	4.安装是否成功
+		a)cmd jdk安装目录\bin
+		B)java -version			//查看java的版本。
+			输出java info		//
+
+
+
+kilo	: 1000
+million : 1000 * 1000 
+billion : 1000 * 1000 * 1000
+
+path:搜索可执行文件的路径。配置的是众多的目录。
+-----------------
+C:\ProgramData\Oracle\Java\javapath;C:\myprograms\CMake\bin;C:\myprograms\protoc-2.5.0;C:\myprograms\cygwin\bin;C:\myprograms\nc;%m2_home%/bin;%spark_home%/bin;%hadoop_home%/bin;%hadoop_home%/sbin;C:\Program Files (x86)\Intel\iCLS Client\;C:\Program Files\Intel\iCLS Client\;%SystemRoot%\system32;%SystemRoot%;%SystemRoot%\System32\Wbem;%SYSTEMROOT%\System32\WindowsPowerShell\v1.0\;C:\Program Files\Intel\Intel(R) Management Engine Components\DAL;C:\Program Files\Intel\Intel(R) Management Engine Components\IPT;C:\Program Files (x86)\Intel\Intel(R) Management Engine Components\DAL;C:\Program Files (x86)\Intel\Intel(R) Management Engine Components\IPT;C:\Program Files\Intel\WiFi\bin\;C:\Program Files\Common Files\Intel\WirelessCommon\;C:\Program Files\Lenovo\Fingerprint Manager Pro\;C:\myprograms\scala\bin;C:\Program Files\Microsoft Windows Performance Toolkit\;%spark_home%\bin;%spark_home%\sbin;C:\myprograms\rose\common;C:\myprograms\mysql\bin
+
+
+环境变量
+--------------
+	1.计算机->属性->...
+	2.查看环境变量
+		echo %path%
+		set						//查看所有环境变量
+		set path				//等价 echo %path%
+		set mypath=%path%;d:\	//临时的设置，位于内存中。
+
+	3.配置java_home
+		java_home=c:\myprogrames\jdk1.8.0_65
+		path=%java_home%\bin;...
+
+
+helloworld
+---------------
+         javac(compile)				  java
+*.java  ---------------->   *.class  ----->  执行
+
+编程java程序
+--------------
+	1.编写java源文件
+		[HelloWorld.java]
+		class HelloWorld
+		{
+			public static void main(String[] args)
+			{
+				System.out.println("hello world");
+			}
+		}
+	2.编译java源文件
+		cmd
+		cd d:\java
+		javac HelloWorld.java
+	3.生成HelloWorld.class文件
+		
+	4.运行java程序
+		java 
+	
+	5.考查问题
+		a)源文件可以是txt扩展名吗？扩展名必须是java
+		b)类名和源文件能否不一致?
+
+文件扩展名问题
+-----------------
+	在Windows窗口中-->alt ->显示菜单 --> 工具 -> 文件夹选项 --> 隐藏扩展名
+
+
+path
+
+classpath
+--------------
+	java搜索类的顺序。
+
+jar
+war
+ear
+har
+tar
+archive : 归档

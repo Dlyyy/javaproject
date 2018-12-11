@@ -1,0 +1,135 @@
+作业
+------------------
+	1.使用MotherBoard,PCI,VideoCard,SoundCard,NetCard实现接口和类的关系
+		PCI是接口
+		VideoCard,SoundCard,NetCard是实现类,实现PCI接口。
+		MotherBoard是类，使用PCI作为方法参数。
+
+	2.Girl.boyFriend(TRH)
+		Girl:女孩(class)
+		Tall:高(interface)
+		Rich:富(interface)
+		Handsome:帅(interface)
+		TRH:高富帅(interface)
+
+	3.继承中方法和字段谁可以覆盖？为什么？
+		
+	4.什么是多态？
+		对象的多种状态。
+
+异常
+---------------
+	Exception
+
+	java.lang.Object
+	Throwable:可抛出的.
+		|----<|---- Error			//错误 例如：
+		堆溢出： 对象太大了  栈溢出： 方法太多了
+		|----<|---- Exception		//异常 try{}catch(Exception e){}finally{}
+
+	throw		//抛出异常的语句
+	throws		//声明抛出异常时使用的关键字
+
+	try{
+		...
+	}
+	catch(Exception e){
+		....
+	}
+	finally{
+		...
+	}
+	finally是无论如何要执行的代码，可以在
+	里面有返回语句，如果finally中返回语句，
+
+	try{
+		...
+	}
+	catch(MyException1 e){
+		...
+	}
+	catch(MyException1 e){
+		...
+	}
+
+	1.定义AgeTooSmallException
+	2.定义AgeInvalidException,AgeTooBigException和AgeTooSmallException继承该异常
+	3.处理异常
+		AgeTooSmallException
+		AgeTooBigException
+		AgeInvalidException
+	CheckedException			//待检异常,非运行时异常，必须声明抛出语句。
+	RuntimeException			//运行时异常,不需要在方法上声明抛出语句，
+								//也不需要必须使用trycatch语句处理。
+
+	方法覆盖时，只能抛出相同异常或者是子类，范围可以缩小，不能放大。
+
+jar		//java archive (java归档)
+ear		//enterprise archive
+war		//web 
+har		//hadoop 
+tar		//
+
+package
+-----------------
+	文件夹。 java.lang.String  java/lang/String.class
+	完整类名 : 包名.类名(全限定名 full qualified name)
+	命名规则 : www.hotmail.com  com.hotmail.
+
+	mkdir classes										//创建目录
+	javac -d classes PackageDemo1.java					//编译java源文件,指定存放目录
+	java -cp classes com.it18zhang.java.PackageDemo1	//运行程序,类全限定名
+
+	相对路径:
+	---------------
+		.			//当前路径
+		..			//上级目录
+		
+	绝对路径:
+	---------------
+		D:\classes\..
+
+权限的访问
+-----------------
+	private		//私有的,不能继承
+	public		//
+	protected	//受保护,针对其他包中的子类。
+	default		//默认，不写.不同包不能访问。
+
+	一个java源文件只能有一个public类.
+
+	如果类使用public修饰，文件名必须是类名。
+
+	private
+
+	
+	范围		public		protected	default		private
+----------------------------------------------------------
+	同类      √				√		  √			   √		
+	同包      √				√		  √
+	子类      √				√
+	不同包    √
+
+作业
+---------------
+	1.三角形类异常
+		定义三角形类(Triangle{a,c,b}),
+		要求:
+		a.两边和 > 第三边 ,抛出异常
+		b.a|b|c > 0 ,抛出异常 
+	2.Person.setBirthday(year,month,day);
+		a.年份  : 1970 - 2016
+		b.month : 1 - 12 
+		c.day   : 1 - 31
+		d.生日是否有效？
+
+	3.dos命令
+		del
+		rmdir
+		rename
+		copy
+		mv 
+		javac  -d 
+		javap
+		java -cp 
+	

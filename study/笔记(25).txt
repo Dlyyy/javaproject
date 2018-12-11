@@ -1,0 +1,26 @@
+NIO
+-----------
+	NEW IO.
+	Buffer				//byte[]
+	0 <= mark <= position <= limit <= capacity
+	flip();				//limit = pos ; pos = 0 ;
+
+	ByteBuffer.allocate(200);		//HeapByteBuffer
+	ByteBuffer.allocateDirect(200);	//DirectByteBuffer
+
+java.nio.*
+---------------
+	java.nio.ByteBuffer
+	java.nio.Buffer
+	FileChannel
+	SocketChannel
+
+使用SocketChannel实现socket编程
+-------------------------------
+	java.nio.ServerSocketChannel		//java.net.ServerSocket
+		accept()
+	java.nio.SocketChannel				//java.net.Socket
+			
+
+	添加到Selector中的Channel必须是非阻塞模式的。
+

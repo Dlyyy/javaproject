@@ -1,0 +1,220 @@
+Socket
+------------------
+	套接字编程.
+
+OSI
+------------------
+	开放系统互联。
+	1.物理层
+	2.数据链路层
+	3.网络层		//ip:internet procal,
+	4.传输层		//tcp:transfer control protocal,UDP:user datagram protocal.数据格式。
+					//tcp三次握手, syn信号 + ack,两次身份验证。面向连接。
+					//Socket : TCP(ServerSocket + Socket) UDP(DatagramSocket)
+					//UDP:无连接,64K
+	5.回话层
+	6.表示层
+	7.应用层		//http https ftp smtp
+
+
+单工
+------------------
+	数据单方向传输。
+
+双工
+------------------
+	数据可双向流动。
+
+	 1.半双工
+		同一时刻只能单方向传输。
+
+
+	2.全双工
+			
+
+传输协议
+-------------
+
+URL
+-------------
+	80
+	443
+	schema://domainname:port/path?queryString#fragement
+	127.0.0.1
+	http://localhost:8080/1.mp3
+	file:///d:/arch/1.txt
+	ftp://ip:676/sss
+	smtp://
+	
+
+
+
+JDBC
+---------------
+	java database connection,java数据库连接。
+
+MySQL
+-------------------
+	1.卸载mysql
+		...
+	2.安装MySQL
+		...
+		custom安装->自己安装目录(不要中文和空格).
+		配置向导.
+		->detail configuration(默认)
+		->Developer machine(默认)
+		->Innodb Tablespace setting(默认)
+		->decision support(默认) 
+		->enable tcp/ip networking(默认)
+		  port number:3306(默认)
+		  勾选"add firewall exception ..."(不是默认)
+		->选择"manual Select default character set / ..."(非默认)
+		  下拉选择"utf8"
+		->勾选"install as windows server"(默认)
+		  默认...
+		->修改安全设置密码
+		  new Root password : root
+		  confirm			: root
+		  勾选"enable root access from remote machine"(非默认)
+		
+		->next
+		->execute.
+
+卸载mysql
+-----------------------
+	1.控制面板卸载mysql
+	2.删除mysql安装目录
+	3.删除C:\ProgramData\MySQL数据文件夹
+	4.删除注册表HKEY_LOCAL_MACHINE\SYSTEM\ControlSet001\Services\Eventlog\Application\MySQL
+	5.删除注册表HKEY_LOCAL_MACHINE\SYSTEM\ControlSet002\Services\Eventlog\Application\MySQL
+
+
+RDBMS
+------------------
+	relation database management system,关系型数据库管理系统。
+	二维表格。
+	结构严谨。
+
+	MySQL		//sun -> oracle
+	Oracle		//
+	SQLServer	//microsoft
+	DB2			//IBM
+	TD			//
+	Sysbase		//
+	PostGre		//java
+
+去IOE
+------------------
+	IBM			//
+	Oracle		//
+	EMC			//共享存储
+
+MySQL
+------------------
+	database		//数据库
+	table			//表
+	column			//列,field
+	record			//记录
+
+
+	
+	unique			//唯一性约束
+	not null		//非空约束
+	primary key		//主键, 不重复 + not null.
+
+	
+MySQL命令
+-------------------
+	[DDL:Data define language,数据定义语言。create drop alter]
+	mysql>show databases ;			//查询哪些数据库,库是表的集合。
+	mysql>exit	;					//退出client
+	mysql>use mhive	;				//使用指定的数据库
+	mysql>show tables ;				//查看库中含有哪些表
+	mysql>create database big3 ;	//创建数据库
+	mysql>drop database big3 ;		//创建数据库
+
+	[table]
+
+	mysql>create table mytable(id int,name varchar(20));	//创建表
+	mysql>show tables;										//显式表
+	mysql>drop table mytable;								//删除表
+
+	[SQL:structure query language,结构化查询语言。]
+	mysql>select * from test ;								//查询表中的所有列,所有行.全表扫描
+															//* 通配所有列.
+	mysql>select * from test where id = 1;					//where子句查询
+
+	mysql>insert into test(id,name) values(1,'tom');		//插入数据
+	mysql>update test set name='jerry';						//更新数据
+	mysql>update test set id = 3,name='jerry' where id = 1;	//使用where子句更新数据
+	mysql>delete * from test ;								//删除所有记录
+	mysql>delete * from test where id = 1;					//
+	mysql>delete * from test where id < 1;					//
+	mysql>delete * from test where id <= 1;					//
+	mysql>delete * from test where id != 1;					//不等于
+	mysql>delete * from test where id <> 1;					// OK,不等于
+	mysql>delete * from test where id >< 1;					// not OK
+	mysql>delete * from test where id >< 1;					// not OK
+
+	mysql>select * from test where name = 'tom';			// MySQL不区分大小写
+	mysql>select id,name from test where name = 'tom';		// 投影查询 projection
+	mysql>select id,name from test where name like 't%';	// 模糊查询 以t开头
+	mysql>select id,name from test where name like '%t';	// 模糊查询 以t结尾
+	mysql>select id,name from test where name like '%t%';	// 模糊查询 含有t  %通配符多个字符.
+	mysql>select id,name from test where name like '%t__';	// 模糊查询 含有t,_匹配一个字符.
+
+	mysql>desc test	;										//describe test ,查看表结构
+	mysql>describe test	;									//describe test ,查看表结构
+
+	mysql>select distinct * from test ;						//去重查询
+	mysql>select * from test  where name is null;			//null值查询 is not null.
+
+	mysql>create table users(id int primary key auto_increment ,	//创建主键(primary key)，字段自增(auto_increment)
+							 name varchar(20) ,
+							 age int);
+	[复制表]
+	mysql>create table t2 like t1;							//类似创建表结构,不含数据
+	mysql>create table t2 as select * from users;			//类似创建表结构,含数据.
+	mysql>create table test.t2 as select * from big3.users;	//复制不同库中的表.
+
+	mysql>
+	CRUD
+	----------
+		create				//insert 
+		retrieve			//select
+		update				//update
+		delete				//delete
+
+	taskkill		/?		//杀死进程
+
+启动MySQL服务
+-------------------
+	cmd>services.msc		//打开服务界面
+	找到mysql
+	启动
+
+	cmd>netstat -ano		//查看端口
+
+	
+JDBC
+---------------
+	java database connection,java数据库连接。
+	0.Driver
+	  驱动程序.
+	  com.mysql.jdbc.Driver			//mysql驱动类
+
+	1.引入mysql驱动.
+		复制mysql-connector-java-5.1.17.jar到项目的lib下.
+	2.添加jar文件到build path(class path)中。
+	3.
+	4.
+
+
+
+
+
+
+
+
+
+	

@@ -1,0 +1,165 @@
+继承
+-------------
+	1.抽象共性.
+	2.多个类是子类，抽象的类叫父类(超类)
+	3.子类可以访问父类的非private成员。
+	4.通过extends继承。
+	5.类只支持单重继承 + 多层继承.
+
+练习
+-----------
+    class Car{color , tires}
+
+	    /|\
+
+	class SportCar{boolean updoor,//上开门
+				int velocity//速度}
+
+		/|\
+
+	class BMW {int power,String engine}
+
+
+super | this
+-----------------
+	类内置的成员变量，指向的是父类对象的引用。只能在类的内部使用，类似于this.
+	如果当前类有和父类相同的成员，若访问父类成员，需要用到super.
+
+super() | this()
+-----------------
+	调用的是父类的构造函数。必须是第一条语句。
+
+方法重载(overload)
+-----------------
+	继承是前提条件。
+
+方法覆盖(重写)override(overwrite)
+----------------------------------
+	1.和父类方法签名相同
+	2.private方法无法覆盖
+	3.super可以访问父类方法。
+	4.注意事项
+		a.权限要放大。不可以缩小
+		   public > ... > private 
+		b.静态和非静态必须是一致的。
+
+//
+Animal(name,color)
+//
+  
+Monkey(climb() | )
+
+//
+GoldenMonkey(int weight , climb())
+
+final
+----------------
+	1.修饰方法、类、变量
+	2.修饰类
+		final class Dog		//不能继承.终态类。
+	3.修饰方法
+		不能重写。
+	4.修饰字段
+		不能修改。
+
+
+Car类{String color , int tires , run();}
+
+Benz
+--------------
+	1.继承Car
+	2.不能被继承
+	3.商标属性不能修改
+		String brand = "BENZ" ;
+	4.点火方法不能重写。
+		fire()
+	5.private + final ?
+		没有意义。
+	6.static + final 修饰常量.
+
+类成员
+-------------
+	1.成员变量
+	2.成员函数
+	3.构造代码块
+	4.构造函数
+	5.静态代码块
+	6.内部类
+
+内部类
+----------------
+	1.定义在class内部的类。
+	2.编译产生OuterClass$Innerc.class
+	3.内部类访问外部类的局部变量，需要时final修饰。
+
+
+抽象类
+-----------------
+	1.不能实例化的类。
+	2.abstract
+		抽象修饰的类.
+	3.抽象类和具体类相对
+
+
+
+作业
+--------------------
+	1.阐述final修饰符的作用
+	2.继承实现以下功能
+		a.定义类
+			
+			Animal <|- Cat--- <|-  JiaFeiCat
+			   |         |
+			   |		 |
+			   |	     |--- <|-  BosiCat
+			   |-- <| - Dog--- <|- Jing8   
+						 |---- <|- ZangAo   
+				
+		b.JiaFeiCat是终态类，不能继承。  final
+		c.Cat中定义catchMouse方法,切该方法不能被覆盖。  final
+		d.ZangAo定义常量，Blood = "English" ;  public final String Blood
+		e.Animal ,Dog,Cat都是抽象类. abstract class Dog extends Animals{}
+	
+	3.实现内部类
+		a.外部类ChinaMap{ratio}
+		b.定义内部类,NashQunDaoMap{ratio}
+		class ChinaMap{
+			String name = "";
+			publc void ratio(){
+					System.out.println();
+			}
+			class NanSha{
+
+			}
+		}
+	
+	4.具体类为何不能有抽象方法?
+	抽象方法没有方法体
+	他只定义方法（方法签名），没有具体的实现（方法体）。
+	抽象方法要求其子类在继承时必须对方法进行实现，意思就是父类写了个抽象的方法，没有方法体，子类继承父类，再把方法体写上这就是实现了父类的抽象方法。
+	5.内部类如何访问外部类中的方法以及外部类父类中的方法?Benz.this. Benz.super.
+		class Car{
+			//方法1.
+			run(){...}
+		}
+
+		class Benz extends Car{
+			//方法2
+			run(){...}
+
+			class Engine{
+				fire(){
+					//TODO 访问方法1
+					//TODO 访问方法2
+				}
+			}
+		}
+	6.以下修饰符，哪些是非法组合?
+		abstract + final =   非法
+		abstract + private = 非法
+		abstract + static =  非法 抽象方法没有方法体。如果是静态方法，直接通过类访问
+		final + private =    可以通过，修饰成员变量有意义，就是私有常量。如果修饰方法就没有意义。
+
+	7.?????抽象类继承具体类。????可以
+	8.?????子类能否把父类中的具体方法覆盖成抽象方法?????能 见 AbstractDemo1
+

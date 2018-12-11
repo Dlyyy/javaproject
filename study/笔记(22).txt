@@ -1,0 +1,328 @@
+JDBC
+--------------
+	Connection		//
+	Statement		//
+	PreparedStatement	//
+	CallableStatement	//
+
+MySQL
+--------------
+	驱动程序.jar
+	Class.forName("com.mysql.jdbc.Driver");
+	url				//schema://domainname:port/path
+					//jdbc:mysql://localhost:3306/big3
+	driverclass		//com.mysql.jdbc.Driver
+	username		//root
+	password		//root
+
+	executeUpdate();
+	executeQuery();	//ResultSet 1
+
+	-- 注释
+	insert into users(name,age) values('tom',12);		//插入
+	concat(',',123);	//"," + 123						//
+	
+	-- 更新
+	update users set name='xxx',age = 23 where id = 124	//更新
+
+	-- 删除
+	delete from users where ...
+
+	-- 查询
+	select * from users where ... order by id asc , name desc ;
+
+	-- 连接查询
+
+连接处理
+----------------
+	1.准备数据
+		-- 执行脚本
+		-- 删除子表
+		drop table if exists orders ;
+
+		-- 删除customers(主表)
+		drop table if exists customers ;
+
+		-- 创建customers表
+		create table customers(id int primary key auto_increment,name varchar(20));
+
+		-- 创建orders
+		create table orders(id int primary key auto_increment ,
+							orderno varchar(20), 
+							price float , 
+							cid int);
+
+		-- 给orders添加外检约束
+		alter table orders add constraint foreign key (cid) references customers (id)
+
+		-- 添加数据
+		insert into customers(name) values('tom');
+		insert into customers(name) values('tomas');
+		insert into customers(name) values('tomasLee');
+	
+		insert into orders(orderno,price,cid) values('no001',100.5,1);
+		insert into orders(orderno,price,cid) values('no002',100.5,1);
+		insert into orders(orderno,price,cid) values('no003',100.5,2);
+		insert into orders(orderno,price,cid) values('no004',100.5,2);
+		
+	2.关联查询
+		a.内连接
+		  -- (笛卡尔积)
+		  -- 无条件连接.
+		  select a.id aid , a.name aname , b.id bid,b.orderno borderno from customers a ,
+															orders b order by a.id,b.id;
+
+		  -- 有条件
+		  select a.id aid , a.name aname , b.id bid,b.orderno borderno from customers a ,orders b  
+															where a.id = b.cid order by a.id,b.id;
+
+		b.外链接(left outer join)
+		  -- 补全
+
+		  -- left outer join
+		  select a.*,b.* from customers a left outer join orders b on a.id = b.cid ;
+
+		  -- right outer join
+		  select a.*,b.* from customers a right outer join orders b on a.id = b.cid ;
+
+		  -- full outer join
+		  select a.*,b.* from customers a full outer join orders b on a.id = b.cid ;
+
+	3.聚集函数
+		a.max
+			最大值
+			select max(price) from orders ;
+		b.min
+			最小值
+			select min(price) from orders ;
+		c.avg
+			平均值
+			select avg(price) from orders ;
+		d.count
+			总数
+			select count(price) from orders ;
+		e.sum
+			总和
+			select sum(price) from orders ;
+			
+		f.group by 
+			select cid,max(price) from orders group by cid ;
+
+		g.group by ... having
+			-- 对分组之后的记录在进行过滤
+			select cid,max(price) from orders group by cid ;
+		
+		h.select ... from ... where ... group by ... having ... order by ...
+
+	3.OLTP
+		on line transaction process,在线事务处理。
+
+
+	4.OLAP
+		on line analyze process,在线分析处理.
+
+transaction
+---------------
+	A:atomic		
+	C:consistent
+	I:isolate
+	D:durable
+
+	commit()
+	rollback()
+	rollback(savepoint);
+
+事务操作
+-------------
+	读锁(共享)
+	写锁(独占)
+
+
+事务并发执行,三个现象
+------------
+	脏读			//读未提交,
+					//一个事务读取了另外一个事务改写还未提交的数据，
+					//如果另外一个事务在稍后时刻回滚则脏读发生了。
+
+	不可重复读		//读不回去
+					//一个事务在进行相同条件的查询连续的两次或者两次以上，
+					//每次结果都不同。
+					//查询期间，有其他事务进行update操作.
+
+
+	幻读			//读多了
+					//一个进行相同条件查询，在后来的查询中会发现原来的记录。
+					//查询期间，有其他事务进行insert操作.
+
+
+ANSI(美国国家标准机构) SQL
+---------------------------
+	1.
+	2.
+	3.
+	4.
+
+隔离级别 : isolation level
+--------------------------
+	1.1,read uncommitted,读未提交,导致脏读.
+	2.2,read committed,读已提交，避免了脏读，不可重复和幻读还能发生。
+	3.4,repeatable read,可以重复读，避免了不可重复读，幻读还能发生。
+	4.8,serializable,串行，避免了了以上现象。
+
+MVCC
+------------------------------
+	Multiple version concurrent control.
+
+设置事务隔离级别
+---------------------
+	1.set session transaction 
+		设置当前回话的所有事务都是该级别。
+	2.set global transanction ...
+		设置全局的隔离级别，
+	3.set transaction ...
+		设置下次的事务隔离
+	4.之前的连接的级别不受影响
+
+通过mysql客户端验证事务隔离级别
+-------------------------------
+	准备.
+		-- 关闭自动提交
+		set autocommit=0 ;
+
+	[脏读]
+		[A]
+			2.关闭自动提交
+				set autocommit=0;
+			
+			3.开始事务
+				start transaction ;
+			
+			4.执行更新
+				udpate customers set name = 'jerry' where id = 1 ;
+				
+		[B]
+			1.设置B的隔离级别
+				set session transaction isolation level read uncommitted ;-- read uncommitted | read committed | repeatable read | serializable
+
+			5.查询customers
+				select * from customers where id = 1 ;			//读到jerry,脏读发生了.
+
+			
+	[不可重复读]
+		注释:mysql的repeatable read隔离级别不仅能够避免不可重复读，还能避免幻读。
+		[A]
+			1.设置隔离级别 read repeatable read.
+				set session transaction isolation level repeatable read ;
+
+			2.关闭自动提交
+				set autocommit = 0;
+			
+			3.开始事务
+				start transaction ;
+			
+			4.查询
+				select name from customers where id = 1 ;
+			
+			6.二次查询
+				select name from customers where id = 1 ;		//jerry
+		[B]
+			5.开启事务，更新数据，提交数据。(默认是自动提交)
+				update customers set name = 'jerry' where id = 1 ;
+
+	
+	[幻读]
+		将隔离级别设置为read uncommitted或者read committed均可。
+	
+
+mysql默认隔离级别是4---repeatable read.
+oracle默认隔离级别是2---read committed,不支持repeatable read。
+
+隔离级别
+---------------
+	serializable
+	[A]
+		1.set autocommit=0;
+		2.set transaction isolation level serializable;
+		3.start transaction;
+		4.select * from customers; 
+
+		7.select * from customers ;		//
+
+
+	[B]
+		5.insert into customers(name) values('ttt') ;
+		6.commit();
+	
+
+查询是列转行显式
+---------------------
+	select * from customers \G ;
+
+
+锁
+-------------------
+	[悲观锁]
+	不支持并发。//serializabe就是悲观锁
+	业务层面上实现:
+
+	customers
+	------------------------
+	| ...| ...        | lock|
+	-------------------------
+		1				  0/1
+		update ...
+
+		1.select lock 
+	
+
+	[乐观锁]支持并发，但是感知数据被篡改了。
+		使用标记位实现。
+			时间戳:同意
+			版本:(首选)
+		update ...,version=? where id = ? and version = ?
+
+查询隔离级别
+-----------------
+	select @@global.tx_islation;		//全局
+	select @@session.tx_islation;		//当前回话
+	select @@tx_islation;				//下次
+
+读操作时上写锁
+----------------
+	1.使用serializable
+	2.select ... for update，类似于serializable隔离级别。
+		
+锁级别
+----------------------
+	行级锁。
+
+
+	[表级锁]
+	lock tables customers read local ;
+	...									//其他事务无法插入.
+	unlock tables;
+
+设计模式
+----------------
+	单例模式.
+	工厂模式
+	适配器模式
+	装饰模式
+	builder模式
+
+	池化模式(多例模式):使用有效的对象服务于大量的客户端。连接池。
+
+对象
+------------------
+	有状态:
+	无状态:
+
+自定义数据源
+------------------
+
+
+使用第三方开源的连接池实现
+---------------------------
+	1.c3p0
+		mchage包.
+	2.

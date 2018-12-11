@@ -1,0 +1,161 @@
+ObjectInputStream/ObjectOuputStream	//串行化的类
+java.io.Serializable				//串行化接口
+
+transient	//临时的，防止串行化过程。
+
+
+protocal
+------------
+	规则。数据格式。
+
+http:(应用)
+-------------
+	hyper text transfer protocal
+	超文本传输协议。
+	
+ftp(应用层)
+-------------
+	file transfer protocal.
+	
+
+TCP
+------------
+	transfer control protocal,传输控制协议。
+
+IP
+------------
+	internet protocal,网络协议。
+
+七层协议
+------------
+
+
+OSI
+------------
+	Open System interconnect,
+	开发系统互联。
+	
+	物理层			//rj45
+	数据链路层		//FDDI
+	网络层			//IP(internet protocal)
+	传输层			//TCP UDP
+					//TCP:面向连接的，安全的协议，有确认(回执)，数据有序。
+					//TCP建立连接的三次握手:
+					  两次身份认证过程。
+					//UDP:无连接，不安全，没有固定的路由。
+	回话层			//RPC,remote procedure call,远程过程调用.
+	表示层			//是否加密
+	应用层			//FTP,HTTP HTTPS,SMTP(simple mail transfer protocal)
+
+
+查看ip和mac物理地址
+---------------------
+	c:\>cmd
+	c:\>ipconfig /all
+
+port
+--------------------
+	端口.
+	0 ~ 65535		//
+	0 ~ 1023		//保留端口
+	22				//
+	80				//
+	3306			//mysql
+	1521			//oracle
+	1433			//sqlserver
+	0.0.0.0			//通配IP地址。
+	ip:port
+	192.168.231.100:3306	0.0.0.0//3306	
+	192.168.231.101:3306
+
+查看端口占用情况
+-----------------
+	nestat -ano 
+
+InetAddress				//只有ip，没有端口
+InetSocketAddress		//InetAddress + port
+
+DNS
+---------
+	域名解析.
+localhost				//127.0.0.1
+# Copyright (c) 1993-2009 Microsoft Corp.
+
+
+C:\Windows\System32\drivers\etc\hosts
+---------------------------------------
+	127.0.0.1       localhost
+	192.168.231.100 s100
+	192.168.231.101 s101
+	192.168.231.102 s102
+	192.168.231.103 s103
+	192.168.231.104 s104
+	192.168.231.105 s105
+	192.168.231.106 s106
+	192.168.231.107 s107
+	127.0.0.1       vinci.ie.sogou.com
+
+windows杀死进程.
+---------------------
+	1.taskkill /?						//查看帮助
+	2.taskkill /f /pid 1234				//f:强制 pid:进程id
+	3.taskkill /f /pid a /pid 2			//杀死多个进程
+	4.taskkill /f /IM notepad.exe /T	//杀死进程树,使用映像名
+
+
+搭建tomcat web服务器
+-----------------------
+	1.下载tomcat的zip文件。
+		apache-tomcat-7.0.72.zip
+	2.解压即可。
+		
+	3.启动tomcat服务器
+		${tomcat_home}\bin\startup.bat
+	4.查看tomcat服务器监听端口8080
+		netstat -ano
+	
+	5.打开web浏览器
+		http://localhost:8080/
+
+	4.停止服务器
+		a.ctrl + c
+		b.${tomcat_home}\bin\shutdown.bat
+
+	5.在服务器上发布资源。
+		复制文件(夹)到${tomcat_home}\webapps\ROOT\下即可。
+	
+	6.通过浏览器访问tomcat服务器上的资源.
+		http://locahost:9090/111.txt
+
+
+
+URL:Uniform Resource Locator
+-----------------------------
+	统一资源定位符.
+	schema://domainname:port/path?queryString
+	http://www.baidu.com/
+	http://192.168.21.34:9090/ziling.mp3
+
+	URLCOnnection conn = URL.openConnection()			//打开连接
+	conn.getContentLength()								//得到资源大小
+	conn.getContentType()								//得到资源类型
+
+
+URI:Uniform Resource Identifier
+--------------------------------
+	统一资源标识符.
+	mailto:
+
+
+在eclipse中创建tcp/ip监控器.
+------------------------------
+	eclipse --> windows -> 首选项 -> run/debug -->tcp / ip monitor
+
+作业
+-----------------
+	1.加载文件到编辑器。
+	  不阻塞前台线程。
+	  随时可以打开新文件，清除文本框内容。
+
+	2.多线程下载器
+		选做题(使用多个条跟踪).

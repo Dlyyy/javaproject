@@ -1,0 +1,117 @@
+作业
+---------------------------------------
+	1.三角形类异常
+		定义三角形类(Triangle{a,c,b}),
+		要求:
+		a.两边和 > 第三边 ,抛出异常
+		b.a|b|c > 0 ,抛出异常 
+
+	2.Person.setBirthday(year,month,day);
+		a.年份  : 1970 - 2016
+		b.month : 1 - 12 
+		c.day   : 1 - 31
+		d.生日是否有效？
+
+archive :
+
+jar
+------------------
+	1.打包方式一
+		jar cvf xxx.jar Xxx.class yyy.class	//将指定的class文件导入到jar中
+	
+	2.打包方式二
+		jar cvf xxx.jar -C xxx/ .			//将某个目录下的所有文件打入到jar中
+
+	3.查看jar文件
+		jar -tf xxx.jar
+
+	4.运行jar中的类
+		java -cp xxx.jar xx.x.x.x.Xxxx		//后面跟完整类名
+	
+	5.指定清单文件(xxx.jar/META-INF/MENIFEST.MF)的入口类.
+		语法:jar {ctxui}[vfmn0PMe] [jar-file] [manifest-file] [entry-point] [-C dir] files ...
+		jar -cvfe classess.jar com.it18zhang.java.PackageDemo1 -C classes/ .
+	
+	6.如果jar中的清单文件含有入口点(Main-Class),可以使用如下命令直接执行程序
+		java -jar classess.jar
+	
+完整过程
+------------------
+	1.编写java源文件
+		..
+	2.编译java源文件，生成.class文件，指定目录
+		mkdir test2/classes			//存放class文件
+		cd test2/src				//存放源代码
+		javac -d ..\classes HelloWorld.java
+		tree /F
+	3.运行java程序
+		cd d:\
+		java -cp d:\test2\classes com.it18zhang.java.HelloWorld
+	4.打包jar文件
+		f : 指定jar文件名
+		e : 指定入口点类(含有main函数的类).
+		cd d:\test2
+		jar cvfe classes.jar com.it18zhang.java.HelloWorld -C classes/ .
+	5.查看jar文件
+		jar -tf classes.jar 
+	6.执行jar文件
+		java -jar classes.jar 
+
+相对路径
+------------
+	
+
+绝对路径
+------------
+	d:\java\classes
+
+
+对线程
+--------------------
+	进程	:运行时概念，运行的应用程序。进程间不能共享内存。
+
+	线程	:应用程序内部并发执行的代码段，共享内存。
+
+宏观:
+--------------
+	CPU : 
+
+	较真
+
+Thread:  线程就是方法栈
+--------------
+	java.lang.Thread
+
+	yield		:放弃cpu抢占权，有谦让之意.
+	join		:等指定的线程执行完之后继续运行。
+	sleep		:静态方法，让线程休眠毫秒数。
+	daemon		:守护线程.如果应用程序剩余的线程都是守护线程，则程序结束。
+
+锁
+-----------------
+	任意一个对象都可以是锁。信号灯，参照物。
+	同步代码块:
+		synchronized(lock){...}
+
+	同步方法:非静态同步方法以当前对象作为锁旗标
+		public synchronized void xxx(){...}
+
+	同步方法:静态同步方法以当前类作为锁旗标
+
+售票
+----------------
+	100
+	线程安全:
+
+作业
+-------------------
+	1.过山洞
+		5辆汽车过山洞，每次只允许一辆汽车通过，每辆汽车通过时间不同(2,5,7,9,10),设计程序，完成汽车通过山洞的场景。
+		提示:汽车是线程。
+		使用同步代码块和同步方法两种方式实现。
+
+	2.银行存钱取票机的问题.
+		50人去银行存钱，从取票机取票号问题。每个人取得票号是唯一的。
+		使用同步代码块和同步方法两种方式实现。
+	
+	3.

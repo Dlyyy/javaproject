@@ -1,0 +1,173 @@
+runtime data area
+--------------------
+	1.method area(共享)
+	2.heap	(共享)
+	3.java stack(非)
+	4.native method stack(非)
+	5.program couter register(非)
+
+	method frame(stack frame)
+
+从heap角度
+-------------
+	1.heap		//
+		young gen(eden + survivor0 + survivor 2) + old gen.
+	2.non-heap
+		perm | metaspace
+	3.off-heap
+		jvm之外的内容
+
+jvm调优
+--------------
+	-Xmx
+	-Xms
+	-Xmn		//young 
+	-XX:NewSize=
+	-XX:MaxNewSize=
+
+
+java -Xmx xx.x.xx.App
+
+
+
+反射
+--------------
+	动态访问对象的属性和方法。
+	Class			//类
+	Method			//方法，成员函数
+	Field			//字段,成员变量
+	Constructor		//构造函数
+
+	private
+
+
+Field[] fs = getDeclaredFields()
+for(Field f : fs){
+	get + ""
+}
+
+
+内省
+------------------
+	Introspector.
+	操作javabean。
+
+
+作业
+---------------
+	1.通过反射实现同类对象属性的复制。
+	  使用Method方式
+
+	2.通过反射实现不同类对象属性的复制。
+	  使用Field方式.
+
+
+
+设计模式
+-----------------
+	单例(无状态)
+	池化模式(无状态)
+	装饰
+	适配器
+	builder
+	factory
+	代理模式.
+	
+反射技术.
+---------------
+	Introspector:		//JavaBean
+
+	动态访问对象属性和方法。
+	Class		//
+	Method		//
+	Field		//
+	Constructor	//
+
+
+IO
+------------
+	InputStream		//read
+	OuputStream		//write
+
+	Reader			//
+	Writer			//字符流
+
+	BufferedInpustStream	//
+	BufferedOutputStream	//
+
+	BufferedReader
+	BufferedWriter
+
+	InputStreamReader
+	ObjectInputStream
+	ObjectOutputStream
+
+	ByteArrayInputStream
+	ByteArrayOutputStream
+
+
+NIO:New IO
+----------------------------
+	ServerSocket ss = new ServerSocket(8888);
+	//阻塞的
+	while(true){
+		Socket s = ss.accept();
+		InputStream is = s.getInputStream();
+		//阻塞的
+		while(true){
+			is.read(buf);
+		}
+		...
+	}
+
+NIO : java.nio.Buffer
+--------------------------
+	[java.nio.Buffer]
+	容器,线性的,有限的.
+	Capacity			//容量
+	limit				//限制
+	position			//指针位置
+	mark				//记号(标记)
+
+	//分配字节缓冲区
+	ByteBuffer buf = ByteBuffer.allocate(20);		//
+	ByteBuffer buf = ByteBuffer.allocateDirect(20);	//直接内存
+	
+	java.nio.ByteBuffer
+			/\
+			 |--------------java.nio.HeapByteBuffer			//堆内存区
+			 |--------------java.nio.DirectByteBuffer		//离堆内存区.
+	
+		get()	//读
+		put()	//写
+
+		position()		//取出指针位置
+		position(int )	//设置指针新位置
+		limit()			//设置指针新位置
+		limit(int l)	//设置新limit
+
+		flip()			//
+
+		0 <= mark <= position <= limit <= capacity
+
+GC
+-------------
+	garbage collection,垃圾回收。
+	对象回收的条件:没有任何一个指针能够直接或间接达到的话，就回收了。
+	Person p = new Person();
+	Person p2 = p ;
+	p = null ;
+
+	List<Person> list = new ArrayList<Person>();
+	list.add(p2);
+	p2 = null ;
+
+	list.clear();
+
+ByteBuffer.flip()
+---------------------
+
+
+作业
+--------------
+	使用堆内存和直接内存缓冲区复制大文件，对比性能。

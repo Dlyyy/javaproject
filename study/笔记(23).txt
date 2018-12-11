@@ -1,0 +1,194 @@
+JVM
+----------------
+	java virtual machine.
+	sandbox
+
+
+栈区
+堆区
+方法区
+
+dll(windows)
+-----------
+	dynamic link library,动态链接库
+	函数库 + 资源.
+
+so(linux)
+-------------
+	shared object,共享对象
+
+*.java ---> *.class --> ClassLoader
+
+
+//类类,类的描述符
+Class clazz = Person.class ;
+
+
+new Person();
+
+OOM
+-------------------
+	Outof memory,内存溢出.
+
+www.StackOverflow.com
+---------------------
+	
+
+Runtime data area
+-------------------
+	1.Method area
+		方法区.
+		存放类描述符.
+		Class只需加载一次。
+		扩容.
+		maven
+		共享。
+		Class.forName("");
+
+	2.heap
+		堆区.
+		存放对象和数组的地方。
+		在所有线程间共享
+
+	3.java stack
+		每个线程对应一个栈。
+		每个进程至少有个一个线程(主线程).
+		method frame(stack frame).
+
+
+	4.native method stack
+		native方法。
+	5.program conter register
+		略.
+
+
+java堆
+----------------------
+	heap	:	
+	non-heap:
+	off-heap:
+
+通过jdk自带jvisualvm软件考察
+-------------------------------
+	1.cmd>jvisualvm
+	2.安装visualgc的插件
+		工具菜单 --> 插件 -> visual gc ->安装.
+
+jconsole
+---------------------
+
+
+jmap
+------------
+	1.查看堆信息
+		jmap -heap 19524
+	2.查看永久区
+		jmap -permstat 19524
+	3.查看类加载信息
+		jmap -clstats 19524
+
+JVM调优
+-------------
+	-Xms			//堆初始值  1/64( < 1G)
+	-Xmx			//堆最大值	1/4 ( < 1G)
+	-Xmn			//年轻代(eden + s0 + s1),-Xmn150M
+
+	-XX:NewSize		//for 1.3/1.4/1.8,设置年轻带大小
+					//-XX:NewSize=150m
+					//优先级 > NewRatio.
+
+	-XX:MaxNewSize	//for 1.3/1.4/1.8,设置年轻带大小最大值
+
+	-XX:PermSize	//设置永久代值,1.8移除了该属性
+					//-XX:PermSize=150m
+	-XX:MaxPermSize	//设置永久代值最大值
+					//-XX:MaxPermSize=150m
+
+	-XX:MetaspaceSize=2048m
+	-XX:MaxMetaspaceSize=2048m
+	-XX:CompressedClassSpaceSize=2048m		//***** 设置1.8的meta区 *****
+
+	-Xss			//栈空间
+	-XX:NewRatio	//年轻代和年老代的比例，-XX:NewRation=n,
+					//代表 年轻代 : 年老代 = 1 : n
+					//-XX:NewRatio=2
+					//-XX:NewRatio=0.5,错误的，不能指定小数。
+
+	-XX:SurvivorRatio	//设置,单个幸存区 : 伊甸区 = 1 : n 
+						//-XX:SurvivorRatio=2,
+
+
+
+java com.it18zhang.java24.jvm.TestJVM
+
+	old   : 133.5M
+	young : 8  + 8 + 50.5 = 66.5M
+
+	young : old  = 1 : 2		//
+
+	eden : survivor = 3 : 1		//
+
+ClassLoader加载
+----------------
+	1.转换类名到location,定位class文件。
+	2.
+	3.
+
+
+Map : 
+-----------------
+	x instanceof Person ;			//模糊判断.
+	getClass() == Person.class ;	//精准判断
+
+反射
+-----------------
+	动态访问对象的属性和方法。
+
+
+	Person p = new Person();
+	p.setName("xxx");
+	p.getName();
+
+	1.Class
+		类的描述符.
+		描述类的特征。
+		Person.class ;
+		Class clazz = Class.forName();
+		Class clazz = Xxx.class()
+		Class clazz = obj.getClass();
+
+
+	2.Method
+		方法.
+		方法描述符。
+		//得到类中声明的方法(private + public + protected)
+		Method m = clazz.getDeclaredMethod("name",...);
+
+		//得到所可用的方法(继承的方法)·
+		Method m = clazz.getMethod("name",...);
+		
+		//
+		m.setAccessible(true);
+	
+	3.Field
+		字段。
+		字段描述符.
+		Field f = clazz.getField("name");
+		Field f = clazz.getDeclaredField("name");
+		
+		f.setAccessible();
+
+	4.Constructor
+		构造函数描述符.
+		clazz.getConstructor(Class...)
+		
+
+作业
+---------------
+	1.通过反射实现同类对象属性的复制。
+	  使用Method方式
+
+	2.通过反射实现不同类对象属性的复制。
+	  使用Field方式.
+	
+	

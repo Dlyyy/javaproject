@@ -1,0 +1,160 @@
+
+作业
+------------------
+	1.集合的嵌套
+		一个学校有6个年级，
+		每个年级10个班
+		每个班50学生对象(Student).
+
+	2.遍历时候使用增强for循环.
+		for(Class x : col){
+			...
+		}
+	3.实现文件的归档和解归档以及读取归档文件的所有文件名。
+		
+10,494,334
+10,494,373 字节)
+-------------
+
+        39
+
+a.txt 
+---------
+	4
+	5
+	4
+	5
+
+b.jpg
+---------
+	4
+	5
+	4
+	780,831 
+
+c.mp3
+---------
+	4
+	5
+	4
+	9,713,498
+
+IO
+----------
+	Input/Ouput
+
+GOF：java设计模式,
+------------------------
+	对java中特定场景下专家级结束解决方案。
+	gang of four,四人帮。
+
+Java设计模式。
+
+单例模式:singleton
+---------------
+	类有且只有一个对象。
+	new Person();
+	new Dog();
+	1.懒汉式
+		/**
+		 * 单例模式,垃圾箱
+		 */
+		public class GarbageBox {
+			//实例
+			private static GarbageBox instance ; 
+			/**
+			 * 构造私有
+			 */
+			private GarbageBox(){
+			}
+			
+			public static GarbageBox getInstance(){
+				if(instance == null ){
+					instance = new GarbageBox();
+				}
+				return instance ;
+			}
+		}
+	2.饿汉式
+		/**
+		 * 单例模式,垃圾箱
+		 */
+		public class GarbageBox2 {
+			
+			//实例
+			private static GarbageBox2 instance = new GarbageBox2(); 
+			/**
+			 * 构造私有
+			 */
+			private GarbageBox2(){
+			}
+			
+			public static GarbageBox2 getInstance(){
+				return instance ;
+			}
+		}
+	
+
+适配器模式:Adapter
+-------------------
+	interface 
+	GUI:
+
+装饰模式:锦上添花,decorate
+---------------------------
+	class A{
+		
+		public void aa(){
+			...
+		}
+	}
+
+	class B extends A{
+		private A a ;
+
+		public B(A a ){
+			this.a = a ;
+		}
+
+		public void aa(){
+			...
+			a.aa();
+			...
+		}
+	}
+
+工厂模式
+------------------
+	new
+	通过方法创建完成的对象。
+	
+
+Builder
+-----------------
+	setXx()返回对象自身。
+
+refresh		//刷新
+flush		//清理
+clear		//清空
+
+
+流总结
+---------------
+	类型:字符流 + 字节流
+	方向:输入流 + 输出流
+	性能:缓冲区流
+
+	
+	功能:转换流,InputStream/OutputStream -> Reader/Writer
+
+
+
+作业
+---------------
+	0.归档-解归档
+		...
+	1.练习设计模式
+		MonkeyKing	//单例
+	2.递归输出D:\所有文件和文件夹.
+
+	3.实现文件夹的复制。

@@ -1,0 +1,86 @@
+作业
+---------------
+	0.归档-解归档
+		...
+	1.练习设计模式
+		MonkeyKing	//单例
+	2.递归输出D:\所有文件和文件夹.
+
+	3.实现文件夹的复制。
+780831
+
+260,277
+260,277
+260,277
+
+RandomAccessFile
+------------------
+	随机访问文件。
+	ICQ : I seek you!
+	seek:
+	skip:跳跃,相对的量。
+	可以读写操作。
+
+
+	RandomAccessFile
+
+Class	   : 判断是精准判断。
+
+instanceof : 家族匹配.
+
+串行化(序列化)
+--------------
+	1.将java对象转换成byte[]
+	  将java对象用于网络间传输或者是本地化存储。
+	  数据格式。
+		FileOutputStream fos = new FileOutputStream("d:/tmp.dat");
+		ObjectOutputStream oos = new ObjectOutputStream(fos);
+		oos.writeObject(i);
+		oos.close();
+		fos.close();
+		java.io.Serializable		//标识性接口,JVM
+
+
+	2.反串行(反序列)
+	  将byte[]恢复成对象的过程。
+		FileInputStream fis = new FileInputStream("d:/tmp.dat");
+		ObjectInputStream ois = new ObjectInputStream(fis);
+		Integer ii = (Integer)ois.readObject();
+		System.out.println(ii);
+		ois.close();
+		fis.close();
+
+	3.深度复制
+		复制整个对象图.
+	
+	4.transient修饰变量不经过串行过程。
+
+GUI
+--------------
+	graphic user interface.
+
+回顾流
+-------------------
+	[InputStream]
+	FileInputStream
+	BufferedInputStream
+	ObjectInputStream
+	ByteArrayInputStream
+	FilterInputStream
+
+	[Reader]
+	FileReader
+	BufferedReader
+	FilterReader
+	
+	InputStreamReader
+	OutputStreamWriter
+
+
+
+作业
+-----------------
+	1.实现多线程复制。
+
+	2.gui，打开时使用多线程读取文件，显式到文本域中。
+	  保存，打开文件选择器，指定保存路径,实现文件保存。

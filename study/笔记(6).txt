@@ -1,0 +1,108 @@
+作业
+--------------------
+	1.阐述final修饰符的作用
+	2.继承实现以下功能
+		a.定义类
+			
+			Animal <|- Cat--- <|-  JiaFeiCat
+			   |         |
+			   |		 |
+			   |	     |--- <|-  BosiCat
+			   |-- <| - Dog--- <|- Jing8   
+						 |---- <|- ZangAo   
+				
+		b.JiaFeiCat是终态类，不能继承。
+		c.Cat中定义catchMouse方法,切该方法不能被覆盖。
+		d.ZangAo定义常量，Blood = "English" ;
+		e.Animal ,Dog,Cat都是抽象类.
+	
+	3.实现内部类
+		a.外部类ChinaMap{ratio}
+		b.定义内部类,NashQunDaoMap{ratio}
+	
+	4.具体类为何不能有抽象方法?
+	5.内部类如何访问外部类中的方法以及外部类父类中的方法?
+		class Car{
+			//方法1.
+			run(){...}
+		}
+
+		class Benz extends Car{
+			//方法2
+			run(){...}
+
+			class Engine{
+				fire(){
+					//TODO 访问方法1
+					//TODO 访问方法2
+				}
+			}
+		}
+	6.以下修饰符，哪些是非法组合?
+		abstract + final	= 非法
+		abstract + private	= 非法
+		abstract + static	= 非法,
+							  抽象方法没有方法体，如果是静态方法，直接通过类访问。
+
+		final + private		= 可以通过，修饰成员变量有意义，就是私有常量，如果修饰方法
+							  没有意义。
+
+
+高内聚低耦合原则
+-----------------
+	
+
+接口
+------------------
+	类似于抽象类，所有方法都是抽象。成员变量都是常量。
+	类和接口之间是(多)实现关系。
+	类和类之间是继承，单重继承。
+
+	class Xxx implements White,Rich,... {
+		
+	}
+
+	class B extends A {
+		
+	}
+
+	PC
+
+	1.interface
+		接口。
+	2.接口中的成员修饰符固定
+		public static final		//成员变量
+		public abstract			//成员函数
+	3.通过接口间接实现了多重继承。
+		
+	4.最低标准
+		耦合度很低。
+	5.
+
+OOP
+------------
+	1.封装
+	2.继承
+	3.多态
+		多种状态。
+		Animal <|-- Dog <| -- Jing8
+		使用父类引用子类的对象。
+		使用接口引用实现类的对象。
+
+
+
+作业
+------------------
+	1.使用MotherBoard,PCI,VideoCard,SoundCard,NetCard实现接口和类的关系
+		PCI是接口
+		VideoCard,SoundCard,NetCard是实现类,实现PCI接口。
+		MotherBoard是类，使用PCI作为方法参数。
+	2.Girl.boyFriend(TRH)
+		Girl:女孩(class)
+		Tall:高(interface)
+		Rich:富(interface)
+		Handsome:帅(interface)
+		TRH:高富帅(interface)
+
+	3.继承中方法和字段谁可以覆盖？为什么？
+	

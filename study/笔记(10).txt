@@ -1,0 +1,165 @@
+作业
+------------------
+	1.熊吃蜂蜜问题
+		100只蜜蜂.
+		每只蜜蜂一次生产蜂蜜量为1.
+		蜜罐的容量是20.
+		熊在蜜罐满了的时候一次性吃掉所有蜂蜜。
+		提示:蜜蜂生产蜂蜜时，如果蜜罐已满则等待，否则+1，notifyAll.
+			 熊吃蜂蜜时，如果蜜罐已满则吃掉再notifyAll，否则，notifyAll.
+	
+	2.和尚吃馒头问题
+		100馒头
+		50个和尚，每个和尚一次只能吃一个馒头，但是最多只允许吃三个馒头。
+		看每个和尚各吃了多少馒头。
+	
+	3.sleep()方法和wait()方法的区别?
+
+	4.解决线程死锁的办法？
+		
+	
+	5.线程有哪些状态，如何变换，出发机制是什么?
+
+	6.阐述等待队列
+
+
+windows系统字体设置
+--------------------
+	控制面板 -> 字体 -> Courier New -> 显式
+
+eclipse
+------------------
+	IBM
+	4000万美金
+	日食.
+	sun
+	空格或者中文目录.
+	IDE : 集成开发环境。
+
+	透视图:一组布局。View + Editor
+	改变主题
+	-----------------
+		eclipse -> windows -> preferences -> General -> Appearance -> windows classic + classic theme
+
+		windows -> show view  -> other ...
+
+
+eclipse快捷键
+------------------
+	alt + /				//内容辅助
+	ctl + alt + down	//向下复制一行
+	ctl + alt + up		//向上复制一行
+
+	alt + down			//向下移动一行
+	alt + up			//向上移动一行
+	ctl + d				//删除一整行
+	ctl + shift + f		//格式化代码
+
+	shift + enter		//中途回车，不换行
+	ctrl	+ /			//切换注释
+	ctrl + shift + /	//块注释 
+	ctrl + shift + \	//解除块注释 
+
+	ctl + shift + T		//
+
+
+
+java单元测试
+---------------------
+	@Test:加载非静态方法
+		
+	@Before:加载非静态方法，在@Test之前运行
+
+	@BeforeClass:加载静态方法上，在类之前运行。
+
+
+
+
+设置java编辑器字体
+-------------------
+	eclipse -> windows -> preference -> appearance -> color and font -> java Editor font -> 字体Courier New 10号字体
+
+String
+------------------
+	1.字符串类
+		final类，无法继承
+	2.内部采用char[]数组存储
+	3.length()方法
+		返回的字符的个数。
+	4.字符串内部不能改变，属于常量
+
+
+字符集
+--------------------
+	ascii		:美国国家标准交换码，使用一个字节的7位表示。
+	iso-8859-1	:欧洲码表，使用8位表示，无法存储汉字。
+	gb2312		:中文码表,简体中文.两个字节存储。
+	gbk			:gb2312升级版
+	big-5		:繁体中文，
+	utf-8		:变长字符表示法，最多使用3个字节表示。
+	unicode		:两个字节表示字符，java中使用该码表。
+	
+编码
+------------
+	encode
+	String --> byte[]
+	Sring.getBytes("");
+
+解码
+------------
+	decode
+	byte[] --> String
+
+
+com.it18zhang.java11.test.TestString2
+
+gbk
+----------
+	97		//a
+	98		//b
+	99		//c
+	-42, -48//中
+	-71, -6	//国
+
+utf-8
+----------
+	97, 98, 99, 
+	-28, -72, -83	//中
+	-27, -101, -67	//国
+
+
+StringBuffer
+------------------
+	线程安全的。
+	
+StringBuilder
+-------------------
+	不是线程安全的。
+
+html
+------------
+	String
+
+
+
+作业
+------------------
+	1.和尚吃馒头问题
+		93馒头
+		50个和尚，每个和尚一次只能吃一个馒头，但是最多只允许吃三个馒头。
+		每个和尚至少吃一个馒头.
+		看每个和尚各吃了哪些馒头。
+
+	2.String封装新方法
+		//hello world 3,5==>lo	
+		//hello world 3,5==>lo wo
+		substring(int beginIndex,int length);
+
+	3.找到你自己的名字的unicode编码.
+
+	4.对字符串进行倒序输出？
+
+				
+
+
+	

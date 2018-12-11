@@ -1,0 +1,288 @@
+C/S
+-------------
+	client / server
+	Socket / ServerSocket
+	用户体验.
+
+B/S
+----------------
+	browser    / server.
+	ie|firefox / web server.(tomcat)
+
+SQL
+-----------------
+	structure query language.
+	insert into t(f1,f2,...) values(v1,v2,...) ;
+	delete from t where ...
+	update t set f1=v1,f2=v2 ,... where ...
+	select * from t ;
+	select id,name,... from t ;		//projection,投影查询
+
+
+
+JDBC
+---------------
+	java database connection.
+	java数据库连接
+	规范(接口)。
+	Driver			//驱动程序
+	driverclass		//com.mysql.jdbc.Driver
+	url				//jdbc:mysql://localhost:3306/big3
+	username		//root
+	password		//root
+
+	//
+	Class.forName("com.mysql.jdbc.Driver");		//
+	conn = DriverManager.getConnection(...);	//
+	Statement st = conn.createStatement();		//语句
+	st.execute("delete from users where id < 4");//
+	st.close();
+
+
+
+
+sql
+----------------
+	select * from users order by id desc ;						//默认asc		
+	select * from users order by id asc,name desc,age asc ;		//
+	select * from users order by 1 asc,2 desc,3 asc ;			//
+
+事务性
+----------------
+	Transaction:事务
+				commit			//提交
+				rollback		//回滚.
+	和db之间一组操作。
+	四个特性acid:
+
+	atomic		//原子性,不可分割.
+	consistent	//一致性,不能破坏掉.
+	isolate		//隔离型,事务独立的。
+	durable		//永久性,永久有效.
+
+jdbc的事务处理
+-----------------
+	conn.setAutocommit(false);		//关闭自动提交
+
+	conn.commit();					//提交事务
+
+	conn.rollback(SavePoint sp);	//回滚事务
+
+
+聚集函数查询
+---------------
+	select count(1) from users;
+	
+查询mysql的系统表
+---------------------
+	//查询指定的库中是否含有指定的表,通过查询系统库实现的。
+	select table_name from information_schema.tables where table_name = 'users' and table_schema = 'big3';
+
+	use 
+	
+	[DDL]
+	create 
+	drop
+	alter
+
+分页查询
+---------------------
+	mysql:			//limit
+					//                 3:offset, 10:length
+					//select ... limit 3,10;
+	oracle:			//嵌套子查询rownum
+	sqlserver		//top
+
+修改表
+--------------------
+	alter table users add column password varchar(20);
+	desc users;
+	update users set password = '123456' ;
+
+	sql注入:
+	-------------
+	select * from users where name = 'tom0' and password='123456'
+
+
+	Statement
+	-----------------
+		执行静态语句.
+		导致sql注入问题。
+	
+	PreparedStatement
+	-----------------
+
+
+截断表,数据无法回滚。
+-------------------------
+	truncate table users;
+
+Statement < PreparedStatement  < CallableStatement
+
+
+LOB:large Object.
+
+MySQL
+-----------------
+	LongBlob		//long binary large object.
+	Text			//
+
+
+
+操作大对象
+-------------------
+	1.增加两个字段
+		alter table users add column pic longblob ;
+		alter table users add column info text ;
+		//
+		conn = getConn();			//连接
+		conn.setAutoCommit(false);	//自动提交
+		String sql = "select pic from users where id = ?" ;
+		ppst = conn.prepareStatement(sql);
+		ppst.setInt(1,1);
+		ResultSet rs = ppst.executeQuery();
+		if(rs.next()){
+			byte[] bytes = rs.getBytes(1);
+			FileOutputStream fos = new FileOutputStream("d:/KKK.jpg");
+			fos.write(bytes);
+			fos.close();
+		}
+		
+		conn.commit();
+		ppst.close();
+		conn.close();
+	
+	2.
+
+mysql赋值语法
+---------------
+	1.set x := a + b ;
+
+	2.select count(*) into x from ... ;
+
+
+	
+
+存储过程
+-------------------------
+	1.创建add存储过程
+		mysql>delimiter //
+		mysql>create procedure up_add(in a int,in b int ,out c int)
+		mysql>begin
+		mysql>set c := a + b ;
+		mysql>end 
+		mysql>//
+
+		mysql>call up_add(1,2,@x) //
+		mysql>select @x //
+
+	2.java调用存储过程
+		Connection conn = null ;
+		CallableStatement cst = null ;
+		try {
+			conn = getConn();			//连接
+			cst  = conn.prepareCall("{call up_add(?,?,?)}");
+			cst.setInt(1, 1);
+			cst.setInt(2, 3);
+			cst.registerOutParameter(3, Types.INTEGER);
+			//执行存储过程
+			cst.execute();
+			int r = cst.getInt(3);
+			System.out.println(r);
+			
+			cst.close();
+			conn.close();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+	3.处理游标
+		
+		CREATE PROCEDURE curdemo()
+		BEGIN
+		  DECLARE done INT DEFAULT 0;
+		  DECLARE a CHAR(16);
+		  DECLARE b,c INT;
+		  DECLARE cur1 CURSOR FOR SELECT id,data FROM test.t1;
+		  DECLARE cur2 CURSOR FOR SELECT i FROM test.t2;
+		  DECLARE CONTINUE HANDLER FOR SQLSTATE '02000' SET done = 1;
+		 
+		  OPEN cur1;
+		  OPEN cur2;
+		 
+		  REPEAT
+			FETCH cur1 INTO a, b;
+			FETCH cur2 INTO c;
+			IF NOT done THEN
+			   IF b < c THEN
+				  INSERT INTO test.t3 VALUES (a,b);
+			   ELSE
+				  INSERT INTO test.t3 VALUES (a,c);
+			   END IF;
+			END IF;
+		  UNTIL done END REPEAT;
+		 
+		  CLOSE cur1;
+		  CLOSE cur2;
+		END
+
+
+通过存储过程实现百万记录插入
+-----------------------------
+	1.创建存储过程
+		create procedure up_biginsert(in num int)
+		begin
+			declare i int default 0;
+			start transaction ;
+			while i < num do
+				insert into users(name,password,age) values(concat('tom',i),concat('',i),i % 30);
+				set i := i + 1 ;
+			end while ;
+			commit ;
+		end
+
+	2.java代码
+		Connection conn = null ;
+		CallableStatement cst = null ;
+		try {
+			conn = getConn();			//连接
+			long start = System.currentTimeMillis() ;
+			cst  = conn.prepareCall("{call up_biginsert(?)}");
+			cst.setInt(1, 1000000);
+			//执行存储过程
+			cst.execute();
+			System.out.println(System.currentTimeMillis() - start);
+			cst.close();
+			conn.close();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+	3.java执行DDL语句.
+		Connection conn = null ;
+		try {
+			conn = getConn();			//连接
+			long start = System.currentTimeMillis() ;
+			//删除过程
+			conn.prepareStatement("drop procedure up_biginsert").executeUpdate();
+			System.out.println(System.currentTimeMillis() - start);
+			conn.close();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+
+MySQL函数,有返回值
+-------------------
+	1.创建函数
+		mysql>create function uf_add(a int, b int) returns int return a + b ; //
+	2.java
+	3.
+	4..
+
+		
+练习
+-----------
+	在一个事务中，一次性插入100万记录.
+	计算时间。
+	id tom0 age % 100
