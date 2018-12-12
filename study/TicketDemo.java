@@ -2,7 +2,7 @@ class TicketDemo {
 	public static void main(String[] args) 	{
 		TicketMachine m = new TicketMachine();
 		for(int i = 0 ; i < 50 ; i ++){
-			new Person(m,"tom" + i).start();
+			new Person(m,"tom" + i).start(); //每个对象只用一次
 		}
 	}
 }
@@ -10,7 +10,7 @@ class TicketDemo {
 //取票机
 class TicketMachine{
 	private int ticketNo = 1 ;
-	//打印票号
+	//打印票号   同步方法要尽可能短
 	public synchronized int printTicketNo(){
 		int currTicketNo = ticketNo ;
 		 ticketNo ++ ;

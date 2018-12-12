@@ -15,7 +15,7 @@ class CarCaveDemo{
 }
 //山洞类
 class Cave{
-	//汽车通过方法
+	//汽车通过方法   非静态同步方法
 	public synchronized void crossCar(Car car){
 		try{
 			System.out.println(car.name + " : 开始过山洞!");
@@ -38,6 +38,6 @@ class Car extends Thread{
 	}
 
 	public void run(){
-		cave.crossCar(this);
+		cave.crossCar(this);  //放this 指向car
 	}
 }

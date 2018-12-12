@@ -11,7 +11,7 @@ class ThreadDemo7 {
 //票池
 class TicketPool{
 	private int tickets = 100 ;
-	//从票池取票
+	//从票池取票   静态同步方法
 	public synchronized int getTicket(){
 		int ticket = tickets ;
 		tickets -- ;
@@ -20,7 +20,7 @@ class TicketPool{
 }
 //售票员
 class Saler extends Thread{
-	private TicketPool pool ;
+	private TicketPool pool ; //不要接着new一个pool
 	private String name ;
 	public Saler(String name , TicketPool pool){
 		this.name = name ;

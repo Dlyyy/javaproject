@@ -8,7 +8,7 @@ class PCDemo2 {
 		c.start();
 	}
 }
-//生产者
+//生产者   继承线程就要加上run函数
 class Productor extends Thread{
 	private java.util.List<Integer> list ;
 	public Productor(java.util.List<Integer> list){

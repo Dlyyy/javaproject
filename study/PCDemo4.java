@@ -24,7 +24,7 @@ class MyList{
 	public synchronized void addLast(Integer i){
 		while(list.size() >= MAX){
 			try{
-				wait();
+				wait(); //进入等待队列
 			}
 			catch(Exception e){
 			}
@@ -42,7 +42,7 @@ class MyList{
 			catch(Exception e){
 			}
 		}
-		notify();
+		notify();  //通知
 		int no = list.remove(0);
 		System.out.println("remove.size : " + list.size());
 		return no ;
