@@ -6,7 +6,8 @@ class ThreadDemo1{
 		MyThread t1 = new MyThread();
 		YourThread t2 = new YourThread();
 		//启动线程
-		t1.run();			//1个线程.
+		t1.run();			//若start改为run  只有一个1个线程. 
+		                    //在主线程中运行 不会调t2 必须都为start t1 t2才会都执行
 		t2.start();
 	}
 }

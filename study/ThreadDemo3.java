@@ -32,7 +32,7 @@ class Waiter extends Thread{
 	}
 	public void run(){
 		while(true){
-			System.out.println(new java.util.Date());
+			System.out.println(new java.util.Date());  //每隔一秒钟报一次时间
 			try{
 				Thread.sleep(1000);
 			}

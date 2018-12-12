@@ -9,9 +9,9 @@ class ThreadDemo4 {
 
 class Saler extends Thread{
 	//锁
-	static Object lock = new Object();
+	static Object lock = new Object(); //任何对象都可以作为锁。 不用Object 用String啥的都行
 	//票数
-	static int tickets = 100 ;
+	static int tickets = 100 ; //定义为static  因为静态跟对象无关
 	private String name ;
 	public Saler(String name){
 		this.name = name ;

@@ -11,7 +11,7 @@ class ThreadDemo2 {
 			p3.start();
 			p4.start();
 
-			p1.join();
+			p1.join();  //等p1执行完再继续往下运行  join方法定义了异常 要加try catch
 			p2.join();
 			p3.join();
 			p4.join();
