@@ -11,7 +11,7 @@ class PCDemo2 {
 //生产者   继承线程就要加上run函数
 class Productor extends Thread{
 	private java.util.List<Integer> list ;
-	public Productor(java.util.List<Integer> list){
+	public Productor(java.util.List<Integer> list){  //构造函数
 		this.list = list ;
 	}
 	public void run(){

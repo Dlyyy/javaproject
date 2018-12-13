@@ -15,7 +15,7 @@ class MyList{
 	private java.util.List<Integer> list = new java.util.LinkedList<Integer>();
 	public void addLast(Integer i){
 		while(true){
-			synchronized(list){
+			synchronized(list){ //加上同步方法  用仓库作锁
 				if(list.size() < MAX){
 					list.add(i);
 					System.out.println("p.Size : " + list.size());
