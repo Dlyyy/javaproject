@@ -24,25 +24,25 @@ class MyList{
 	public synchronized void addLast(Integer i){
 		while(list.size() >= MAX){
 			try{
-				wait(); //进入等待队列
+				wait(); //进入等待队列 让当前线程进入到锁对象的等待队列中去，同时释放锁旗标
 			}
 			catch(Exception e){
 			}
 		}
 		list.add(i);
 		System.out.println("add.size : " + list.size());
-		notify();
+		notify();  //通知
 	}
 	//删除第一个元素
 	public synchronized Integer removeFirst(){
 		while(list.size() == 0){
 			try{
-				wait();
+				wait(); //等待的同时释放锁
 			}
 			catch(Exception e){
 			}
 		}
-		notify();  //通知
+		notify();  //通知 ，锁还没有释放 执行完了 其他程序继续
 		int no = list.remove(0);
 		System.out.println("remove.size : " + list.size());
 		return no ;
