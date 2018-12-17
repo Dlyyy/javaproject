@@ -5,7 +5,7 @@ class RunnableDemo2 {
 	public static void main(String[] args)	{
 		//匿名内部类对象
 		/*
-		new Thread(new Runnable(){
+		new Thread(new Runnable(){    //runnable是个接口 需要大括号加方法实现
 			public void run(){
 				System.out.println("hello world");
 			}

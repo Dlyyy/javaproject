@@ -17,12 +17,13 @@ eclipse
 	-----------------
 		eclipse -> windows -> preferences -> General -> Appearance -> windows classic + classic theme
 
-		windows -> show view  -> other ...
+		windows -> show view  -> other ...  
+		//增加其他视图 outline console
 
 
 eclipse快捷键
 ------------------
-	alt + /				//内容辅助
+	alt + /				//内容辅助    sysout alt+/
 	ctl + alt + down	//向下复制一行
 	ctl + alt + up		//向上复制一行
 
@@ -36,17 +37,17 @@ eclipse快捷键
 	ctrl + shift + /	//块注释 
 	ctrl + shift + \	//解除块注释 
 
-	ctl + shift + T		//
+	ctl + shift + T		//搜索指定的类型源码
 
 
 
-java单元测试
+java单元测试    （每个方法都可以单独运行 不需要main函数）
 ---------------------
 	@Test:加载非静态方法
 		
 	@Before:加载非静态方法，在@Test之前运行
 
-	@BeforeClass:加载静态方法上，在类之前运行。
+	@BeforeClass:加载静态方法（static）上，在类之前运行。
 
 
 

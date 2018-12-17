@@ -1,4 +1,4 @@
-class PCDemo5{
+class PCDemo5{  //死锁
 	public static void main(String[] args){
 		//使用java中集合类，List是列表。
 		Pool pool = new Pool();
@@ -15,15 +15,15 @@ class PCDemo5{
 }
 //生产者
 class Productor extends Thread{
-	static int i = 0 ;
+	static int i = 0 ;  //静态的
 	private String name ;
 	private Pool pool ;
 	public Productor(String name ,Pool pool){
 		this.name = name ;
 		this.pool = pool ;
 	}
-	public void run(){
-		while(true){
+	public void run(){   
+		while(true){    //死循环  一直加
 			pool.add(i ++);
 		}
 	}
@@ -50,12 +50,12 @@ class Pool{
 	private int MAX = 1 ;
 	//添加元素
 	public void add(int n){
-		synchronized(this){
+		synchronized(this){  //以当前对象list作为锁   也可把上下的this都换为list
 			try{
 				String name = Thread.currentThread().getName();
 				while(list.size() == MAX){
 					System.out.println(name + ".wait()");
-					this.wait();
+					this.wait();  //调用的是锁的等待方法
 				}
 				list.add(n);
 				System.out.println(name + " + : " + n);
