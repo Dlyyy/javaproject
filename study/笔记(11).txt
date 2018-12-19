@@ -1,15 +1,16 @@
 1.和尚吃馒头问题
-	93馒头
+	100个馒头
 	50个和尚，每个和尚一次只能吃一个馒头，但是最多只允许吃三个馒头。
 	每个和尚至少吃一个馒头.
-	看每个和尚各吃了哪些馒头。
+	看每个和尚各吃了哪些馒头。  看第12天作业1
 
 2.String封装新方法
 	//hello world 3,5==>lo	
 	//hello world 3,5==>lo wo
 	substring(int beginIndex,int length);
 
-3.找到你自己的名字的unicode编码.
+3.找到你自己的名字的unicode编码.  
+  强转成(int)转换为ascii码  完了 转换为16进制得到unicode码
 
 4.对字符串进行倒序输出？
 
