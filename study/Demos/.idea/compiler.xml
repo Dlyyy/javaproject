@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <option name="DEFAULT_COMPILER" value="Eclipse" />
+    <excludeFromCompile>
+      <file url="file://$PROJECT_DIR$/src/对象属性初始化.java" />
+      <file url="file://$PROJECT_DIR$/src/类属性初始化.java" />
+      <file url="file://$PROJECT_DIR$/src/Hero1.java" />
+      <file url="file://$PROJECT_DIR$/src/懒汉式单例模式.java" />
+      <file url="file://$PROJECT_DIR$/src/饿汉式单例模式.java" />
+    </excludeFromCompile>
+  </component>
+</project>
