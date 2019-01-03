@@ -27,6 +27,7 @@ public class SynchronizedDemo {
         for (int i = 0; i < n; i++) {
             Thread t = new Thread(){
                 public void run(){
+                    //若想实现同步就在这加入  synchronized (someObject) { or  synchronized (gareen) {
                     gareen.recover();
                     try {
                         Thread.sleep(100);
@@ -45,6 +46,7 @@ public class SynchronizedDemo {
         for (int i = 0; i < n; i++) {
             Thread t = new Thread(){
                 public void run(){
+                    //若想实现同步就在这加入  synchronized (someObject) {   or  synchronized (gareen) {
                     gareen.hurt();
                     try {
                         Thread.sleep(100);
