@@ -5,6 +5,7 @@ public class Hero {
     public float hp;
 
     public int damage;
+    public int id;
 
     public Hero() {
 
