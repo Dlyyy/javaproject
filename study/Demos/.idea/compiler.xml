@@ -44,6 +44,7 @@
       <file url="file://$PROJECT_DIR$/src/lambda/LambdaInterpretation.java" />
       <file url="file://$PROJECT_DIR$/src/digit/Demo2.java" />
       <file url="file://$PROJECT_DIR$/src/digit/Wrapper.java" />
+      <file url="file://$PROJECT_DIR$/src/jdbc/获取表的元数据.java" />
     </excludeFromCompile>
   </component>
 </project>
