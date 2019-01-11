@@ -27,7 +27,6 @@
       <file url="file://$PROJECT_DIR$/src/multiplethread/SynchronizedDemo3.java" />
       <file url="file://$PROJECT_DIR$/src/lambda/引用构造器.java" />
       <file url="file://$PROJECT_DIR$/src/collection/ArrayListMethods.java" />
-      <file url="file://$PROJECT_DIR$/src/HelloWorld.java" />
       <file url="file://$PROJECT_DIR$/src/multiplethread/ThreadDemo2.java" />
       <file url="file://$PROJECT_DIR$/src/multiplethread/ThreadDemo3.java" />
       <file url="file://$PROJECT_DIR$/src/lambda/AggregateDemo2.java" />
@@ -45,6 +44,11 @@
       <file url="file://$PROJECT_DIR$/src/digit/Demo2.java" />
       <file url="file://$PROJECT_DIR$/src/digit/Wrapper.java" />
       <file url="file://$PROJECT_DIR$/src/jdbc/获取表的元数据.java" />
+      <file url="file://$PROJECT_DIR$/src/socket/SendThread.java" />
+      <file url="file://$PROJECT_DIR$/src/socket/Server2.java" />
+      <file url="file://$PROJECT_DIR$/src/socket/ClientScanner.java" />
+      <file url="file://$PROJECT_DIR$/src/socket/ReceiveThread.java" />
+      <file url="file://$PROJECT_DIR$/src/socket/Client2.java" />
     </excludeFromCompile>
   </component>
 </project>
