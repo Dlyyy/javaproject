@@ -1,0 +1,43 @@
+<component name="libraryTable">
+  <library name="lib">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/lib/org.springframework.context-3.1.0.M2.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/org.springframework.asm-3.1.0.M2.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/org.springframework.beans-3.1.0.M2.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/org.springframework.web.servlet-3.1.0.M2.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/slf4j-api-1.6.1.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/org.springframework.jdbc-3.1.0.M2.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/org.springframework.oxm-3.1.0.M2.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/mysql-connector-java-5.0.8-bin.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/commons-logging-api-1.1.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/org.springframework.web.portlet-3.1.0.M2.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/org.springframework.instrument-3.1.0.M2.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/aopalliance-1.0.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/dom4j-1.6.1.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/aspectjweaver.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/ehcache-1.2.4.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/org.springframework.core-3.1.0.M2.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/org.springframework.context.support-3.1.0.M2.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/commons-collections-3.1.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/org.springframework.instrument.tomcat-3.1.0.M2.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/hibernate3.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/org.springframework.expression-3.1.0.M2.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/jta-1.1.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/org.springframework.transaction-3.1.0.M2.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/commons-logging-1.1.1.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/cglib-nodep-2.1_3.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/org.springframework.jms-3.1.0.M2.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/org.springframework.aop-3.1.0.M2.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/org.springframework.aspects-3.1.0.M2.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/org.springframework.web.struts-3.1.0.M2.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/org.springframework.test-3.1.0.M2.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/javassist-3.12.0.GA.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/antlr-2.7.6.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/org.springframework.orm-3.1.0.M2.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/hibernate-jpa-2.0-api-1.0.1.Final.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/org.springframework.web-3.1.0.M2.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>
